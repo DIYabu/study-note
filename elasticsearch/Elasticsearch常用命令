@@ -1,0 +1,43 @@
+#创建索引
+curl -XPUT http://localhost:9200/twitter
+#给索引添加map
+curl -XPOST http://localhost:9200/twitter/tweet/_mapping -d'
+{
+    "tweet": {
+             "_all": {
+            "analyzer": "ik"
+        },
+        "properties": {
+            "content": {
+                "type" : "string",
+                "boost" : 8.0,
+                "term_vector" : "with_positions_offsets",
+                "analyzer" : "ik",
+                "include_in_all" : true,
+                "index_analyzer": "ik_max_word",
+                "search_analyzer": "ik_smart"
+            }
+        }
+    }
+}'
+
+#插入索引数据
+curl -XPUT 'http://localhost:9200/twitter/tweet/3' -d '{
+    "user" : "kimchy",
+    "post_date" : "2009-11-15T14:12:12",
+    "message" : "&c.阿萨德发是"
+}'
+
+#获取索引数据
+curl -XGET 'http://localhost:9200/twitter/tweet/1'
+
+#ik分词测试
+curl 'http://localhost:9200/twitter/_analyze?analyzer=ik&pretty=true' -d '
+{
+"&c. Fleishman-Hillard哈哈哈还不错Jigsaw Hall&Partners"
+}'
+
+curl 'http://localhost:9200/twitter/_analyze?pretty=true' -d '
+{
+"&c. Fleishman-Hillard哈哈哈还不错Jigsaw Hall&Partners"
+}'

@@ -1,0 +1,20 @@
+mvn deploy:deploy-file -DgroupId=com.alibaba.jstorm -DartifactId=jstorm-client -Dversion=0.9.6.2 -Dpackaging=jar -Dfile=D:\github\jstorm\jstorm-client-0.9.6.2.jar -Durl=http://git.webinweb.cn:8081/nexus/content/groups/public/ -DrepositoryId=nexus
+
+
+mvn install:install-file -Dfile=D:\github\jstorm\jstorm-client\target\jstorm-client-0.9.6.2.jar -DgroupId=com.alibaba.jstorm -DartifactId=jstorm-client -Dversion=0.9.6.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=D:\github\jstorm\jstorm-client-extension\target\jstorm-client-extension-0.9.6.2.jar -DgroupId=com.alibaba.jstorm -DartifactId=jstorm-client-extension -Dversion=0.9.6.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=D:\github\jstorm\jstorm-server-0.9.6.2.jar -DgroupId=com.alibaba.jstorm -DartifactId=jstorm-server -Dversion=0.9.6.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=C:\Users\windows.IP230\Desktop\beatles\fudannlp.jar -DgroupId=com.timerchina.fudannlp -DartifactId=fudannlp -Dversion=0.1.0.0 -Dpackaging=jar
+
+<dependency>
+<groupId>com.timerchina.fudannlp</groupId>
+<artifactId>fudannlp</artifactId>
+<version>0.1.0.0</version>
+</dependency> 
+
+
+mvn install:install-file -Dfile=C:\Users\windows.IP230\Desktop\beatles\trove.jar -DgroupId=com.timerchina.trove -DartifactId=trove -Dversion=0.1.0.0 -Dpackaging=jar
+

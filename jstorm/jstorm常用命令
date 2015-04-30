@@ -1,0 +1,77 @@
+
+#前台UI
+http://101.226.254.65:8080/cluster.jsf
+
+
+####################################################################################################################
+#Zookeeper相关
+####################################################################################################################
+#Zookeeper安装
+http://blog.csdn.net/hi_kevin/article/details/7089358
+
+#客户端
+zkCli.sh
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################################
+#jstorm nimbus相关
+####################################################################################################################
+
+#复制配置文件
+cp -f $JSTORM_HOME/conf/storm.yaml ~/.jstorm
+#启动/停止nimbus
+nohup jstorm nimbus >/dev/null 2>&1 &
+jps -l | grep nimbus | awk '{print $1}' |xargs kill -9
+#上传jar包
+jstorm jar sequence-split-merge-1.0.8-jar-with-dependencies.jar com.alipay.dw.jstorm.example.sequence.SequenceTopology conf.yaml
+
+
+
+#查询当前运行的Topology和集群信息
+jstorm list
+
+#杀掉运行中的Topology
+jstorm kill myFirstStormApp
+
+
+
+
+
+
+
+
+
+
+####################################################################################################################
+#jstorm supervisor相关
+####################################################################################################################
+
+#启动/停止supervisor
+nohup jstorm supervisor >/dev/null 2>&1 &
+jps -l | grep supervisor | awk '{print $1}' |xargs kill -9
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################################
+#常见运维
+####################################################################################################################
+#检测机器连通性,资料---https://github.com/alibaba/jstorm/wiki/%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%99%A8%E8%BF%9E%E9%80%9A%E6%80%A7
+jstorm jar jstorm-node-connection-check-2.0.0.jar com.alibaba.jstorm.tools.check.NodeCheckTopology xxxx
